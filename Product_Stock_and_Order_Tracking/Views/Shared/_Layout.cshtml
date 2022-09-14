@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Staj Yapı Market Sipariş Ekranı</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Home/Index">Sipariş ve Ürün Stok Takip</a>
+            </div>
+            <ul class="nav navbar-nav">
+
+
+                <li><a href="/Home/Index" style="color:white"> @Session["Name"] @Session["Surname"]</a></li>
+
+                @if (User.IsInRole("A"))
+                {
+                    
+                    <li><a href="/Order/OrderAllList">Tüm Siparişler</a></li>
+                    <li><a href="/Product/StockTrack">Ürün Stok Takibi @Html.Action("StockCount", "Product")</a></li>
+                    <li><a href="/Product/Graph">Stok & Ürün Grafiği</a></li>
+                    <li><a href="/Category/Index">Kategoriler</a></li>
+                }
+
+
+
+                <li><a href="/Product/Index">Ürünler</a></li>
+                <li><a href="/User/UserList">Bayiler</a></li>
+
+                @if (User.IsInRole("U"))
+                {
+
+                    <li><a href="/Order/Index">Siparişlerim</a></li>
+                    <li><a href="/Basket/Index">Sepetim</a></li>
+                }
+
+
+                <li><a href="/Account/LogOut">Çıkış Yap</a></li>
+
+
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+</body>
+</html>

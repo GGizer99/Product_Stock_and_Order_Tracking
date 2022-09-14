@@ -1,0 +1,71 @@
+﻿@using Product_Stock_and_Order_Tracking.Models
+@model List<Basket>
+@{
+    ViewBag.Title = "GetAllOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="container">
+        <h2>Sipariş Onay Ekranına Hoşgeldiniz</h2>
+        Kullanıcı Ad Soyad: @Session["Name"] @Session["Surname"]
+    </div>
+
+    <div class="container">
+        @using (Html.BeginForm("GetAllOrders", "Order", FormMethod.Post,new {@class = "container" }))
+        {
+            foreach (var p in Model)
+            {
+                <div class="form-group">
+                    <h5>ID : @Html.DisplayFor(x => p.Id) </h5>
+                </div>
+                <div class="form-group">
+                    <h5>Ürün Adı : @Html.DisplayFor(x => p.Products.Name) </h5>
+                </div>
+                <div class="form-group">
+                    <h5>Bayi Adı : @Html.DisplayFor(x => p.Users.BayiAdi) </h5>
+                </div>
+                <div class="form-group">
+                    <h5>Bayi Adresi : @Html.DisplayFor(x => p.Users.BayiAdres) </h5>
+                </div>
+                <div class="form-group">
+                    <h5>Bayi Telefonu : @Html.DisplayFor(x => p.Users.BayiTel) </h5>
+                </div>
+                <div class="form-group">
+                    <h5>Sipariş Adedi : @Html.DisplayFor(x => p.Count) </h5>
+                </div>
+
+                <div class="form-group">
+
+                    <h5>Ürün Resmi <img src="~/Content/Image/@p.Products.Picture" width="50" height="50" /></h5>
+
+                </div>
+
+                <div class="form-group">
+                    <h5>Sipariş Tutarı : @Html.DisplayFor(x => p.Price) </h5>
+                </div>
+            }
+
+            <p style="color: red; text-align:center">@ViewBag.Amount</p>
+
+            <div class="container modal-footer" style="float:right">
+
+                <div class="form-group" >
+                    <button class="btn btn-success">Tüm Ürünleri Sipariş için Onayla</button>
+                </div>
+
+                <div class="form-group">
+                    <a href="/Basket/Index" class="btn btn-danger">Tüm Sipariş Sepetini İptal Et</a>
+                </div>
+
+
+
+            </div>
+                
+            
+        }
+    </div>
+</div>
+
+

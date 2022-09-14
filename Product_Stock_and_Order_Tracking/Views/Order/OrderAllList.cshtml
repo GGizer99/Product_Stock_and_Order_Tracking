@@ -1,0 +1,47 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Product_Stock_and_Order_Tracking.Models.Orders>
+@{
+    ViewBag.Title = "OrderAllList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tüm Siparişlerin Listesi</h2>
+
+<table class="table table-hover">
+    <tr style="background-color:silver">
+
+        <th>Sipariş ID</th>
+        <th>Ürün Adı</th>
+        <th>Bayi Adı</th>
+        <th>Bayi Adresi </th>
+        <th>Bayi Telefon Numarası</th>
+        <th>Bayi Sahibi Email</th>
+        <th>Sipariş Adedi</th>
+        <th>Sipariş Tarihi</th>
+        <th>Sipariş Fiyatı</th>
+
+
+
+    </tr>
+
+    @foreach (var order in Model)
+    {
+        <tr>
+
+            <td>@order.Id</td>
+            <td>@order.Products.Name</td>
+            <td>@order.Users.Name</td>
+            <td>@order.Users.BayiAdres</td>
+            <td>@order.Users.BayiTel</td>
+            <td>@order.Users.Email</td>
+            <td>@order.Count</td>
+            <td>@order.Date</td>
+            <td>@order.Price</td>
+
+
+        </tr>
+    }
+</table>
+@Html.PagedListPager(Model, page => Url.Action("OrderAllList", new { page }), PagedListRenderOptions.Classic)

@@ -1,0 +1,30 @@
+﻿@model Product_Stock_and_Order_Tracking.Models.Categories
+@{
+    ViewBag.Title = "UpdateCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form class="form-group" method="post">
+
+                <div style="margin-bottom:15px;">
+                    <label>Kategori Adı</label>
+                    
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label>Kategori Açıklaması</label>
+                    
+                    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+                </div>
+
+                <button class="btn btn-warning">Güncelle</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+

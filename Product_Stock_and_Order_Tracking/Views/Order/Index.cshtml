@@ -1,0 +1,50 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Product_Stock_and_Order_Tracking.Models.Orders>  
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sipariş Listesi</h2>
+
+<table class="table table-hover">
+    <tr>
+
+        <th>Ürün ID</th>
+        <th>Ürün Adı</th>
+        <th>Bayi Adı</th>
+        <th>Bayi Adresi</th>
+        <th>Bayi Telefonu</th>
+        <th>Sipariş Adedi</th>
+        <th>Sipariş Fiyatı</th>
+        <th>Ürün Resmi</th>
+        <th>Sipariş Tarihi</th>
+
+
+    </tr>
+
+    <tbody>
+        @foreach (var o in Model)
+        {
+        <tr>
+            <td>@o.Id</td>
+            <td>@o.Products.Name</td>
+
+            <td>@o.Users.BayiAdi</td>
+            <td>@o.Users.BayiAdres</td>
+            <td>@o.Users.BayiTel</td>
+
+            <td>@o.Count</td>
+            <td>@o.Price</td>
+            <td><img src="~/Content/Image/@o.Products.Picture" width="90" height="90"/></td>
+            <td>@Convert.ToDateTime(o.Date).ToString("dd/MM/yyyy")</td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new {page}),PagedListRenderOptions.Classic)
+

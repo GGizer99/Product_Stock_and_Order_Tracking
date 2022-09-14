@@ -1,0 +1,91 @@
+﻿@using Product_Stock_and_Order_Tracking.Models
+@model List<Products>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div style="width:25%; float:left">
+            @Html.TextBox("search", null, new { @class = "form-control", @placeholder = "Ürün Adını ve Açıklamasını Arayınız..." })
+            <div style="float:left">
+                <br />
+                <input type="submit" name="btn" value="Ara" class="btn btn-primary" />
+            </div>
+            <br />
+        </div>
+    }
+
+</div>
+
+<br />
+
+@if (User.IsInRole("A"))
+{
+    <a href="/Product/AddProduct" class="btn btn-success">Ekle</a>
+}
+
+
+<br />
+<br />
+
+
+<table class="table table-hover">
+
+    <tr style="background-color:silver">
+        <th>Resim</th>
+        <th>Ad</th>
+        <th>Açıklama</th>
+        <th>Kategori</th>
+        <th>Fiyat</th>
+        <th>Stok</th>
+
+
+        @if (User.IsInRole("A"))
+        {
+            <th>Sil</th>
+            <th>Güncelle</th>
+        }
+        @if (User.IsInRole("U"))
+        {
+            <th>Sepete Ekle</th>
+        }
+
+
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><img src="~/Content/Image/@item.Picture" width="80" height="80" /></td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Categories.Name</td>
+            <td>@item.Price</td>
+            <td>@item.Stock</td>
+
+            @if (User.IsInRole("A"))
+            {
+                <td>@Html.ActionLink("Sil", "DeleteProduct", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Ürünü Silmek İstiyor musunuz?')" })</td>
+                <td><a href="/Product/UpdateProduct/@item.Id" class="btn btn-warning">Güncelle</a></td>
+            }
+
+            @if (User.IsInRole("U"))
+            {
+
+                <td><a href="/Basket/AddToBasket/@item.Id" class="btn btn-success">Sepete Ekle</a></td>
+
+            }
+
+        </tr>
+    }
+
+
+
+</table>
+

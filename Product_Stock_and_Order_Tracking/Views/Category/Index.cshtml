@@ -1,0 +1,42 @@
+﻿@using Product_Stock_and_Order_Tracking.Models
+@model List<Categories>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /> 
+<br /> 
+
+<a href="/Category/AddCategory" class="btn btn-success" >Kategori Ekle</a>
+
+<table class="table table-hover">
+    <tr style="background-color:silver">
+
+        <th>Kategori Adı</th>
+        <th>Açıklama</th>
+        @if (User.IsInRole("A"))
+        {
+            <th>Sil</th>
+            <th>Güncelle</th>
+        }
+
+
+    </tr>
+
+    @foreach (var category in Model)
+    {
+        <tr>
+
+            <td>@category.Name</td>
+            <td>@category.Description</td>
+            @if (User.IsInRole("A"))
+            {
+                <td>@Html.ActionLink("Sil", "DeleteCategory", new {id = category.Id },new {@class="btn btn-danger",onclick="return confirm('Ürünü Silmek İstiyor musunuz?')"})</td>
+                <td><a href="/Category/UpdateCategory/@category.Id" class="btn btn-warning">Güncelle</a></td>
+            }
+           
+
+        </tr>
+    }
+</table>
+

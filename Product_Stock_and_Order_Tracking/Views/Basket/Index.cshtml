@@ -1,0 +1,104 @@
+﻿@using Product_Stock_and_Order_Tracking.Models
+@model List<Basket>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>@Session["Name"]</h2>
+<h3>Sipariş Listen</h3>
+<table class="table table-hover">
+    <thead>
+        <tr style="background-color:silver">
+            <th>Ürün Bilgisi</th>
+            <th>Adet</th>
+            <th>Fiyat</th>
+            <th>Tarih</th>
+            <th>Resim</th>
+            <th>Sil</th>
+            <th>Satın Al </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Products.Name</td>
+
+                <td>
+                    <div>
+                        @Html.ActionLink("-", "Decrease", new { id = p.Id,pid = p.Products.Id }, new { @class = "btn btn-default btn-sm Decrease" })
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(x => p.Count, new { @class = "text", data_id = p.Id })
+                    </div>
+
+                    <div>
+                        @Html.ActionLink("+", "Increase", new { id = p.Id, pid = p.Products.Id },  new { @class = "btn btn-default btn-sm Increase" })
+                    </div>
+                </td>
+                <td>@p.Products.Price</td>
+                <td>@Convert.ToDateTime(p.Date).ToString("dd/MM/yyyy")</td>
+
+                <td><img src="~/Content/Image/@p.Products.Picture" width="90" height="90" /></td>
+
+                @if (User.IsInRole("U"))
+                {
+                    <td>@Html.ActionLink("Sil", "DeleteProduct", new { id = p.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Ürünü Silmek İstiyor musunuz?')" })</td>
+                    <td><a href="/Order/GetOrder/@p.Id" class="btn btn-success">Sipariş Ver</a></td>
+                }
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<div class="container">
+    @ViewBag.Amount
+</div>
+<br />
+
+
+<div class="form-group">
+    <a href="/Order/GetAllOrder" class="btn btn-success form-control">Tüm Ürünleri Sipariş için Onayla</a>
+</div>
+
+<div class="form-group">
+    <a href="/Basket/DeleteAllOrders" class="btn btn-danger form-control">Tüm Sipariş Sepetini İptal Et</a>
+</div>
+
+<style>
+    .text {
+        line-height: 18px;
+        width: 50px !important;
+        height: 32px;
+        font-size: 14px;
+        text-align: center;
+        border: solid 1px #ffffff;
+        margin-left: 23px;
+    }
+
+    .Decrease {
+        display: block;
+        cursor: pointer;
+        border: solid 1px red;
+        background-color: red;
+        position: absolute;
+        margin-right: 95px;
+    }
+
+    .Increase {
+        display: block;
+        cursor: pointer;
+        border: solid 1px #4cff00;
+        background-color: #4cff00;
+        position: absolute;
+        margin-top: -32px;
+        margin-left: 75px;
+    }
+</style>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="19171b93ec774e2a95d0bc7714420ffe" Name="Diagram1">
+        <EntityTypeShape EntityType="DBStokTakipModel.Categories" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBStokTakipModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBStokTakipModel.Users" Width="1.5" PointX="1.375" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBStokTakipModel.Basket" Width="1.5" PointX="10.25" PointY="2" />
+        <AssociationConnector Association="DBStokTakipModel.FK_Basket_Users" />
+        <EntityTypeShape EntityType="DBStokTakipModel.Orders" Width="1.5" PointX="13.25" PointY="1.375" />
+        <EntityTypeShape EntityType="DBStokTakipModel.Products" Width="1.5" PointX="8" PointY="0.75" />
+        <AssociationConnector Association="DBStokTakipModel.FK_Basket_Products" />
+        <AssociationConnector Association="DBStokTakipModel.FK_Products_Categories" />
+        <AssociationConnector Association="DBStokTakipModel.FK_Orders_Products" />
+        <AssociationConnector Association="DBStokTakipModel.FK_Orders_Products1" />
+        <AssociationConnector Association="DBStokTakipModel.FK_Orders_Users" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

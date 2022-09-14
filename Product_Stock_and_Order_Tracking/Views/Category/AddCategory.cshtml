@@ -1,0 +1,37 @@
+﻿@model Product_Stock_and_Order_Tracking.Models.Categories
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+ {
+    
+    <div class="container">
+
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+
+                <tr>
+                    <td><label>Kategori Adı</label></td>
+                    <td>@Html.TextBoxFor(x => x.Name, new { @class = "form-control" })</td>
+                </tr>
+
+                <br />
+
+                <tr>
+                    <td><label>Açıklama</label></td>
+                    <td>@Html.TextBoxFor(x => x.Description, new { @class = "form-control" })</td>
+                </tr>
+                <br />
+                <button type="submit" class="btn btn-default">Kategori Ekle</button>
+            </div>
+        
+        </div>
+    </div>
+ 
+
+
+}
+

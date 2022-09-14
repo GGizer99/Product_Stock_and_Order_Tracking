@@ -1,0 +1,57 @@
+﻿@model Product_Stock_and_Order_Tracking.Models.Basket
+@{
+    ViewBag.Title = "GetOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="modal-header">
+    
+    <h2>Sipariş Onay Ekranına Hoşgeldiniz</h2>
+
+</div>
+
+
+<div class="container">
+    @using (Html.BeginForm("GetOrders", "Order", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    @Html.HiddenFor(x => x.Id)
+                    <div class="form-group">
+                        Kullanıcı Ad Soyad: @Session["Name"] @Session["Surname"]
+                    </div>
+
+                    <div class="form-group">
+                        Ürün Bilgisi: @Html.DisplayFor(x => x.Products.Name, new {@class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        Bayi Adı: @Html.DisplayFor(x => x.Users.BayiAdi, new {@class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        Bayi Adresi: @Html.DisplayFor(x => x.Users.BayiAdres, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        Bayi Telefonu: @Html.DisplayFor(x => x.Users.BayiTel, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        Sipariş Adedi: @Html.DisplayFor(x => x.Count, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        Ürün Resmi <img src="~/Content/Image/@Model.Products.Picture" width="80" height="80" />
+                    </div>
+
+                    <div class="form-group text-center" style="font-size:15px; color:red">
+
+                        Sipariş Tutarı : @Html.DisplayFor(x => x.Price, new { @class = "form-control" })
+
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="float:right">
+                    <button class="btn btn-success">Sipariş Ver</button>
+                    <a href="/Basket/Index" class="btn btn-danger">Sipariş İptal</a>
+                </div>
+            }
+</div>
+

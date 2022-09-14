@@ -1,0 +1,54 @@
+﻿@model Product_Stock_and_Order_Tracking.Models.Products
+@{
+    ViewBag.Title = "UpdateProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label>Ürün Adı</label>
+                    <input type="text" name="Name" class="form-control" value="@Model.Name" />
+                </div>
+
+                <div class="form-group">
+                    <label>Ürün Açıklaması</label>
+                    <input type="text" name="Description" class="form-control" value="@Model.Description" />
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ürün Resmi", new { @class = "control-label com-md-2" })
+                    <input type="file" name="file" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Ürünün Kategorisi</label>
+                    @Html.DropDownListFor(x => x.CategoriId, (List<SelectListItem>)ViewBag.category, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>Ürün Fiyatı</label>
+                    <input type="text" name="Price" class="form-control" value="@Model.Price" />
+                </div>
+
+                <div class="form-group">
+                    <label>Ürün Stok</label>
+                    <input type="text" name="Stock" class="form-control" value="@Model.Stock" />
+                </div>
+
+                <button class="btn btn-warning" type="submit">Ürün Bilgilerini Güncelle</button>
+                <a href="/Product/Index">Ürün Listesi</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
